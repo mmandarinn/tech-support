@@ -2,20 +2,21 @@ from email import message_from_bytes
 
 import telebot
 
-bot = telebot.TeleBot('TOKEN',skip_pending=True)
+bot = telebot.TeleBot('8027076864:AAH7kxdu6b4yvnX3DOW6sLGdQlm4-fFtZAw',skip_pending=True)
 
-gr_id = str('modemud')
+gr_id = str('-1002543106386')
 
 @bot.message_handler(commands=['start'])
 def start(message):
-    bot.send_message(message.chat.id,'Здравствуйте! Я бот для тех. поддержки команды SIGN, для обращения в поддержку подробно опишите проблему, возникшую в процессе работы с ботом, для более быстрого решешения и более ясного понимая проблемы, приложите пожалуйста скриншот с ошибкой и сообщениями до её возникновения. Постараемся ответить в кротчайшие сроки!')
-
+    bot.send_message(message.chat.id,'Здравствуйте! Я бот для тех. поддержки команды SIGN, для обращения в поддержку подробно опишите проблему, возникшую в процессе работы с ботом, для более быстрого решения и более ясного понимая проблемы, приложите пожалуйста скриншот с ошибкой и сообщениями до её возникновения. Постараемся ответить в кротчайшие сроки!')
+    print(message.chat.id)
+#Продумать бан мут
 @bot.message_handler(commands=['answer'])
 def sup_ans(message):
     if gr_id in str(message.chat.id):
         try:
             us_id = message.reply_to_message.text[13:]
-            bot.send_message(chat_id=us_id,text=message.text[8:])
+            bot.send_message(chat_id=us_id,text=f'Вам пришел ответ от тех. поддержки:\n\n{message.text[8:]}')
         except:
             bot.reply_to(message,'Произошла какая-то ошибка, проверьте что вы ответили на сообщение с указанием айди и написали /answer {ответ}')
 
