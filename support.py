@@ -2,9 +2,9 @@ from email import message_from_bytes
 
 import telebot
 
-bot = telebot.TeleBot('8027076864:AAH7kxdu6b4yvnX3DOW6sLGdQlm4-fFtZAw',skip_pending=True)
+bot = telebot.TeleBot('TOKEN',skip_pending=True)
 
-gr_id = str('-1002159656601')
+gr_id = str('modemud')
 
 @bot.message_handler(commands=['start'])
 def start(message):
