@@ -3,9 +3,9 @@ from email import message_from_bytes
 from datetime import *
 import telebot
 
-bot = telebot.TeleBot('8027076864:AAH7kxdu6b4yvnX3DOW6sLGdQlm4-fFtZAw',skip_pending=True)
+bot = telebot.TeleBot('TOKEN',skip_pending=True)
 
-gr_id = str('-1002159656601')
+gr_id = str('')
 last_time_dic = {}
 
 @bot.message_handler(commands=['start'])
