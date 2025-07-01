@@ -26,15 +26,20 @@ def sup_ans(message):
 
 @bot.message_handler(commands=['ban'])
 def ban(message):
-    if str(message.chat.id) == gr_id:
-        ban_list.append(message.reply_to_message.text[13:])
-        bot.send_message(message.chat.id, 'Забанен')
-
+    try:
+        if str(message.chat.id) == gr_id:
+            ban_list.append(message.reply_to_message.text[13:])
+            bot.send_message(message.chat.id, 'Забанен')
+    except:
+        bot.send_message(message.chat.id, 'Произошла ошибка, убедитесь что вы ответили на сообщение с указанием айди пользователя нужной вам командой')
 @bot.message_handler(commands=['unban'])
 def ban(message):
-    if str(message.chat.id) == gr_id:
-        ban_list.remove(message.reply_to_message.text[13:])
-        bot.send_message(message.chat.id, 'Разбанен')
+    try:
+        if str(message.chat.id) == gr_id:
+            ban_list.remove(message.reply_to_message.text[13:])
+            bot.send_message(message.chat.id, 'Разбанен')
+    except:
+        bot.send_message(message.chat.id, 'Произошла ошибка, убедитесь что вы ответили на сообщение с указанием айди пользователя нужной вам командой')
 
 @bot.message_handler(func=lambda message:True)
 def sup(message):
