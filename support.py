@@ -3,7 +3,7 @@ from email import message_from_bytes
 from datetime import *
 import telebot
 
-bot = telebot.TeleBot('TOKEN',skip_pending=True)
+bot = telebot.TeleBot('Token',skip_pending=True)
 
 gr_id = str('')
 last_time_dic = {} #словарь для сохранения времени взаимодействия
@@ -13,7 +13,6 @@ ban_list = []
 def start(message):
     bot.send_message(message.chat.id,'Здравствуйте! Я бот для тех. поддержки команды SIGN, для обращения в поддержку подробно опишите проблему, возникшую в процессе работы с ботом, одним сообщением, приложив скриншот. Учтите, минимальное время между сообщениями в поддержку составляет 6 часов, относитесь с умом к вашим запросам. Постараемся ответить в кратчайшие сроки!')
     print(message.chat.id,'     ', message.from_user.username)
-    last_time_dic[message.chat.id] = datetime.now()+timedelta(hours=-6)
 
 @bot.message_handler(commands=['answer'])
 def sup_ans(message):
@@ -48,6 +47,8 @@ def sup(message):
     else:
         if not(gr_id in str(message.chat.id)):
             us_id = message.chat.id
+            if not(message.chat.id in last_time_dic):
+                last_time_dic[message.chat.id] = datetime.now() + timedelta(hours=-6)
             delta = datetime.now() - last_time_dic[message.chat.id]
             if delta.seconds >= 21600:
                 bot.reply_to(message, 'Ваше сообщение передано в тех. поддержу, ожидайте ответа')
